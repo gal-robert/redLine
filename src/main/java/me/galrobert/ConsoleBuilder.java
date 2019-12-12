@@ -1,48 +1,79 @@
 package me.galrobert;
 
+import java.util.ArrayList;
+
 public class ConsoleBuilder {
-    private static final String ANSI_BLACK_BACKGROUND = "\u001B[40m";
-    private static final String ANSI_RED_BACKGROUND = "\u001B[41m";
-    private static final String ANSI_GREEN_BACKGROUND = "\u001B[42m";
-    private static final String ANSI_YELLOW_BACKGROUND = "\u001B[43m";
-    private static final String ANSI_BLUE_BACKGROUND = "\u001B[44m";
-    private static final String ANSI_PURPLE_BACKGROUND = "\u001B[45m";
-    private static final String ANSI_CYAN_BACKGROUND = "\u001B[46m";
-    private static final String ANSI_WHITE_BACKGROUND = "\u001B[47m";
-    private static final String ANSI_RESET = "\u001B[0m";
-    private static final String black = "\u001B[30m";
-    private static final String red = "\u001B[31m";
-    private static final String green = "\u001B[32m";
-    private static final String yellow = "\u001B[33m";
-    private static final String blue = "\u001B[34m";
-    private static final String purple = "\u001B[35m";
-    private static final String cyan = "\u001B[36m";
-    private static final String white = "\u001B[37m";
+    public static final String ANSI_RESET = "\u001B[0m";
 
-    String type;
-    String text;
-    int level;
+    public static final String ANSI_BLACK = "\u001B[30m";
+    public static final String ANSI_RED = "\u001B[31m";
+    public static final String ANSI_GREEN = "\u001B[32m";
+    public static final String ANSI_YELLOW = "\u001B[33m";
+    public static final String ANSI_BLUE = "\u001B[34m";
+    public static final String ANSI_PURPLE = "\u001B[35m";
+    public static final String ANSI_CYAN = "\u001B[36m";
+    public static final String ANSI_WHITE = "\u001B[37m";
 
-    public ConsoleBuilder( ) {
-//        this.color = color;
-//        this.text = text;
-//        this.level = level;
-//        this.type = type;
+    public static final String ANSI_BRIGHT_BLACK = "\u001B[90m";
+    public static final String ANSI_BRIGHT_RED = "\u001B[91m";
+    public static final String ANSI_BRIGHT_GREEN = "\u001B[92m";
+    public static final String ANSI_BRIGHT_YELLOW = "\u001B[93m";
+    public static final String ANSI_BRIGHT_BLUE = "\u001B[94m";
+    public static final String ANSI_BRIGHT_PURPLE = "\u001B[95m";
+    public static final String ANSI_BRIGHT_CYAN = "\u001B[96m";
+    public static final String ANSI_BRIGHT_WHITE = "\u001B[97m";
+
+    public static final String ANSI_BG_BLACK = "\u001B[40m";
+    public static final String ANSI_BG_RED = "\u001B[41m";
+    public static final String ANSI_BG_GREEN = "\u001B[42m";
+    public static final String ANSI_BG_YELLOW = "\u001B[43m";
+    public static final String ANSI_BG_BLUE = "\u001B[44m";
+    public static final String ANSI_BG_PURPLE = "\u001B[45m";
+    public static final String ANSI_BG_CYAN = "\u001B[46m";
+    public static final String ANSI_BG_WHITE = "\u001B[47m";
+
+    public static final String ANSI_BRIGHT_BG_BLACK = "\u001B[100m";
+    public static final String ANSI_BRIGHT_BG_RED = "\u001B[101m";
+    public static final String ANSI_BRIGHT_BG_GREEN = "\u001B[102m";
+    public static final String ANSI_BRIGHT_BG_YELLOW = "\u001B[103m";
+    public static final String ANSI_BRIGHT_BG_BLUE = "\u001B[104m";
+    public static final String ANSI_BRIGHT_BG_PURPLE = "\u001B[105m";
+    public static final String ANSI_BRIGHT_BG_CYAN = "\u001B[106m";
+    public static final String ANSI_BRIGHT_BG_WHITE = "\u001B[107m";
+
+    public void color(String text, String type) {
+        switch (type) {
+            case "h_command":
+                System.out.print(ANSI_BG_GREEN + ANSI_BLACK + " " + text + " " + ANSI_RESET);
+                break;
+            case "command":
+                System.out.print(ANSI_GREEN + " " + text + " " + ANSI_RESET);
+                break;
+            case "error":
+                System.out.print(ANSI_RED + text + ANSI_RESET);
+                break;
+            case "h_error":
+                System.out.print(ANSI_RED + text + ANSI_RESET);
+                break;
+            default:
+                System.out.print(text);
+        }
     }
 
-    public void color(String text, int level, String type) {
-        if(type.equals("cont")) {
-            if (this.level == 5) {
-                System.out.print(red + " " + text + " " + ANSI_RESET +"\n");
-            } else if (this.level == 1) {
-                System.out.print(ANSI_GREEN_BACKGROUND + black + " " + text + " " + ANSI_RESET + "\n");
+    public void list(String commandName, String[] stringList, String listHeader) {
+        if(commandName.equals("help")) {
+            color(listHeader, "command");
+            for (String item : stringList) {
+                String str = "   " + item;
+                color(str, "h_command");
             }
-        } else if(type.equals("newline")) {
-            if (this.level == 5) {
-                System.out.print(red + " " + text + " " + ANSI_RESET + "");
-            } else if (this.level == 1) {
-                System.out.println(ANSI_GREEN_BACKGROUND + black + " " + text + " " + ANSI_RESET + "");
+        } else {
+            color(listHeader, "command");
+            for (String item : stringList) {
+                String str = "   " + commandName + " " + item;
+                color(str, "h_command");
             }
         }
+        System.out.println(" ");
     }
 }

@@ -5,6 +5,8 @@ import java.util.Scanner;
 public class InputController {
     private String input;
     private boolean running;
+    ConsoleBuilder cb = new ConsoleBuilder();
+    private String[] helpCommands ={"add", "remove", "race", "exit"};
 
     public InputController() {
         handleInput();
@@ -12,36 +14,46 @@ public class InputController {
 
     public void handleInput() {
         System.out.print("::");
+
         Scanner scanner = new Scanner(System.in);
         String input = scanner.nextLine().toLowerCase();
 
-        if(input.equals("help")) {
-            clearConsole(50);
-            System.out.println("You can use the following commands:");
-            System.out.println("add");
-            System.out.println("remove");
-            System.out.println("race");
-            System.out.println("exit");
-        } else if(input.equals("exit")) {
-            System.exit(0);
-        } else if(input == "race") {
-            System.out.println("Starting a race...");
-        }
+        commandHelp(input);
 
-        if(input.contains("add")) {
-            if(input.contains("help")) {
+        if (input.contains("add")) {
+            if (input.contains("help")) {
                 System.out.println("The commands you can use: \n   add vehicle\n   add player\n   add track");
             } else {
-//                System.out.println("If you don't know how to use the command use: add help");
-                new ConsoleBuilder("If you don't know how to use the command use:", 5, "newline");
-                new ConsoleBuilder("add help", 1, "cont");
+                cb.color("Invalid command. For more information use: ", "error");
+                cb.color("add help", "h_command");
+                System.out.println(" ");
             }
         }
     }
 
+    private void commandHelp(String input) {
+        switch (input) {
+            case "help":
+//                clearConsole(50);
+//                System.out.println("You can use the following commands:");
+//                System.out.println("add");
+//                System.out.println("remove");
+//                System.out.println("race");
+//                System.out.println("exit");
+                cb.list("help", helpCommands, "You can use the following commands:");
+                break;
+            case "race":
+                System.out.println("Starting a race...");
+                break;
+            case "exit":
+                System.out.println("See you next time!");
+                System.exit(0);
+        }
+    }
+
     private void clearConsole(int lines) {
-        for(int i = 0; i <= lines; i++) {
-            System.out.println("");
+        for (int i = 0; i <= lines; i++) {
+            System.out.println(" ");
         }
     }
 }

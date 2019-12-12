@@ -15,6 +15,7 @@ public class App
 
         Util util = new Util();
         InputController controller = new InputController();
+
         //noinspection InfiniteLoopStatement
         while(true) {
             controller.handleInput();
