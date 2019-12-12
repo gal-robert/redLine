@@ -12,8 +12,6 @@ public class App
         boolean gameRunning = true;
 
         System.out.println("To get you started use the following command: help");
-
-        Util util = new Util();
         InputController controller = new InputController();
 
         //noinspection InfiniteLoopStatement
