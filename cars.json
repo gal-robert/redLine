@@ -1,0 +1,42 @@
+{
+  "m3e92": {
+    "make": "BMW",
+    "model": "M3 (E92)",
+    "year": "2007",
+    "bhp": "420",
+    "cc": "4000",
+    "maxSpeed": "250",
+    "acc": "4.2",
+    "fuelConsumption": "11.7"
+  },
+  "audis5": {
+    "make": "Audi",
+    "model": "S5",
+    "year": "2016",
+    "bhp": "354",
+    "cc": "3000",
+    "maxSpeed": "250",
+    "acc": "4.7",
+    "fuelConsumption": "7.4"
+  },
+  "logan": {
+    "make": "Dacia",
+    "model": "Logan",
+    "year": "2016",
+    "bhp": "90",
+    "cc": "1500",
+    "maxSpeed": "173",
+    "acc": "11.8",
+    "fuelConsumption": "3.6"
+  },
+  "golfgti": {
+    "make": "Volkswagen",
+    "model": "Golf GTI",
+    "year": "2017",
+    "bhp": "230",
+    "cc": "2000",
+    "maxSpeed": "248",
+    "acc": "6.4",
+    "fuelConsumption": "6.3"
+  }
+}

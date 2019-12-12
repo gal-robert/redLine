@@ -8,10 +8,6 @@ public class InputController {
     ConsoleBuilder cb = new ConsoleBuilder();
     private String[] helpCommands ={"add", "remove", "race", "exit"};
 
-    public InputController() {
-        handleInput();
-    }
-
     public void handleInput() {
         System.out.print("::");
 
@@ -32,22 +28,25 @@ public class InputController {
     }
 
     private void commandHelp(String input) {
+        input = input.toLowerCase();
         switch (input) {
             case "help":
-//                clearConsole(50);
-//                System.out.println("You can use the following commands:");
-//                System.out.println("add");
-//                System.out.println("remove");
-//                System.out.println("race");
-//                System.out.println("exit");
                 cb.list("help", helpCommands, "You can use the following commands:");
                 break;
             case "race":
                 System.out.println("Starting a race...");
                 break;
+            case "about":
+                System.out.println("This is a game made to explore the wonderful world of Java. Enjoy it.");
+                System.out.println("Link to the repo: https://github.com/gal-robert/redLine/");
+                break;
             case "exit":
-                System.out.println("See you next time!");
+                cb.color("It's sad seeing you go! :'(", "h_error");
                 System.exit(0);
+            default:
+                cb.color("Invalid command. To see all the commands use ", "error");
+                cb.color("help", "h_command");
+                System.out.println(" ");
         }
     }
 
