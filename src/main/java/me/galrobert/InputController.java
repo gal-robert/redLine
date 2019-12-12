@@ -2,10 +2,9 @@ package me.galrobert;
 
 import java.util.Scanner;
 
-public class InputController {
+public class InputController extends ConsoleBuilder {
     private String input;
     private boolean running;
-    ConsoleBuilder cb = new ConsoleBuilder();
     private String[] helpCommands ={"add", "remove", "race", "exit"};
 
     public void handleInput() {
@@ -19,10 +18,6 @@ public class InputController {
         if (input.contains("add")) {
             if (input.contains("help")) {
                 System.out.println("The commands you can use: \n   add vehicle\n   add player\n   add track");
-            } else {
-                cb.color("Invalid command. For more information use: ", "error");
-                cb.color("add help", "h_command");
-                System.out.println(" ");
             }
         }
     }
@@ -31,7 +26,7 @@ public class InputController {
         input = input.toLowerCase();
         switch (input) {
             case "help":
-                cb.list("help", helpCommands, "You can use the following commands:");
+                 list("help", helpCommands, "You can use the following commands:");
                 break;
             case "race":
                 System.out.println("Starting a race...");
@@ -41,11 +36,11 @@ public class InputController {
                 System.out.println("Link to the repo: https://github.com/gal-robert/redLine/");
                 break;
             case "exit":
-                cb.color("It's sad seeing you go! :'(", "h_error");
+                 color("It's sad seeing you go! :'(", "h_error");
                 System.exit(0);
             default:
-                cb.color("Invalid command. To see all the commands use ", "error");
-                cb.color("help", "h_command");
+                 color("Invalid command. To see all the commands use ", "error");
+                 color("help", "h_command");
                 System.out.println(" ");
         }
     }
